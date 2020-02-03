@@ -3,11 +3,11 @@ const functions = require('firebase-functions');
 const pageSize = 10;
 
 exports.events = functions.https.onRequest((request, response) => {
-    response.json(paginatedResponse(DBEvents, request.query.page));
+    response.json(paginatedResponse(DBEvents, parseInt(request.query.page || 0)));
 });
 
 exports.offers = functions.https.onRequest((request, response) => {
-    response.json(paginatedResponse(DBOffers, request.query.page));
+    response.json(paginatedResponse(DBOffers, parseInt(request.query.page || 0)));
 });
 
 function paginatedResponse(records, page) {
