@@ -12,6 +12,7 @@
     "node": "16"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "firebase-admin": "^11.0.1",
     "firebase-functions": "^3.24.0"
   },

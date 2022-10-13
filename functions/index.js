@@ -1,13 +1,18 @@
 const functions = require('firebase-functions');
+const cors = require('cors')({origin: true});
 
 const pageSize = 10;
 
 exports.events = functions.https.onRequest((request, response) => {
-    response.json(paginatedResponse(DBEvents, parseInt(request.query.page || 0)));
+    cors(request, response, () => {
+        response.json(paginatedResponse(DBEvents, parseInt(request.query.page || 0)));
+    })
 });
 
 exports.offers = functions.https.onRequest((request, response) => {
-    response.json(paginatedResponse(DBOffers, parseInt(request.query.page || 0)));
+    cors(request, response, () => {
+        response.json(paginatedResponse(DBOffers, parseInt(request.query.page || 0)));
+    })
 });
 
 function paginatedResponse(records, page) {
